@@ -1,0 +1,48 @@
+.mis-compras-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mis-compras-title {
+  margin-bottom: 10px;
+}
+
+.mis-compras-description {
+  margin-bottom: 20px;
+}
+
+.compras-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.compra-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 18px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.compra-card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+
+.compra-card-title {
+  margin-bottom: 10px;
+}
+
+.compra-productos-title {
+  margin-top: 10px;
+}
+
+.productos-list {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.producto-item {
+  margin-bottom: 5px;
+}

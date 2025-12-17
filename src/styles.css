@@ -1,0 +1,238 @@
+/* ------------------------------------ */
+/* Estilos Globales */
+/* ------------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+footer {
+  background-color: #2b259e;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* ------------------------------------ */
+/* PRODUCTOS */
+/* ------------------------------------ */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: .2s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.btn-add {
+  width: 100%;
+  background: #193591;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-add:hover {
+  background: #415fd7;
+}
+
+/* ------------------------------------ */
+/* DETALLE PRODUCTO */
+/* ------------------------------------ */
+
+.detalle-container {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.detalle-img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.detalle-info {
+  max-width: 400px;
+}
+
+.btn-volver {
+  display: inline-block;
+  background-color: #193591;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.btn-volver:hover {
+  background-color: #415fd7;
+}
+
+/* ------------------------------------ */
+/* CARRITO */
+/* ------------------------------------ */
+
+.carrito-page {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.carrito-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.carrito-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.carrito-info {
+  flex: 1;
+}
+
+/* -------- Botones de cantidad -------- */
+
+.cantidad-controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.btn-cant {
+  background: #193591;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.2s ease;
+}
+
+.btn-cant:hover {
+  background: #415fd7;
+}
+
+.cantidad-num {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* -------- Botón de eliminar producto -------- */
+
+.btn-eliminar {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: 0.1s;
+}
+
+.btn-eliminar:hover {
+  background: #a71d1d;
+}
+
+/* -------- Subtotal -------- */
+
+.carrito-subtotal {
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+/* -------- Total -------- */
+
+.carrito-total {
+  margin-top: 25px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.btn-vaciar {
+  margin-top: 15px;
+  padding: 10px;
+  width: 180px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-vaciar:hover {
+  background: #333;
+}

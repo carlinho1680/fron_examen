@@ -1,0 +1,145 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ----------------- BANNER ----------------- */
+.banner {
+  width: 100%;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.banner-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 12px;
+  filter: brightness(0.75);
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.banner-text h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.banner-text p {
+  font-size: 1.3rem;
+  margin: 10px 0;
+}
+
+.btn-banner {
+  display: inline-block;
+  background: #ffffff;
+  color: #193591;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-banner:hover {
+  background: #e5e5e5;
+}
+
+/* ----------------- CATEGORÍAS ----------------- */
+.home-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 30px 0 15px;
+  text-align: center;
+}
+
+.categorias-home {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.categoria-box {
+  padding: 12px 25px;
+  border-radius: 10px;
+  background: #193591;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.categoria-box:hover {
+  background: #415fd7;
+}
+
+/* ----------------- DESTACADOS ----------------- */
+.destacados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.destacado-card {
+  text-decoration: none;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  color: #333;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.destacado-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.destacado-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ----------------- NOTICIAS ----------------- */
+.news-container {
+  margin-top: 20px;
+  display: grid;
+  gap: 15px;
+}
+
+.news-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: #222;
+  transition: 0.2s;
+}
+
+.news-item:hover {
+  background: #f0f0f0;
+}
+
+.news-item h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.news-item p {
+  color: #666;
+  font-size: 0.9rem;
+}

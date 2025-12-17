@@ -1,0 +1,44 @@
+.contact-page-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.contact-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.contact-description {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.contact-divider {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 2rem 0;
+}
+
+.contact-email-info {
+  text-align: center;
+  color: #555;
+}
+
+.contact-email-link {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.contact-email-link:hover {
+  text-decoration: underline;
+}
