@@ -1,31 +1,30 @@
-import { useState } from "react"
-import axios from "axios"
-import "./Login.css"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
+import "./Login.css";
 
 export default function Register() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const navigate = useNavigate()
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/register", {
-        name,
+      await api.post("/auth/register", {
+        nombre,
         email,
-        password
-      })
+        password,
+      });
 
-      alert("Cuenta creada con éxito")
-      navigate("/login")
-
+      alert("Cuenta creada con éxito");
+      navigate("/login");
     } catch (err) {
-      alert("Error al crear la cuenta")
+      alert("Error al crear la cuenta");
     }
-  }
+  };
 
   return (
     <div className="login-container">
@@ -33,25 +32,28 @@ export default function Register() {
         <h2>Crear cuenta</h2>
 
         <form onSubmit={handleRegister}>
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="Nombre"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
           />
 
-          <input 
-            type="text" 
+          <input
+            type="email"
             placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
-          <input 
-            type="password" 
+          <input
+            type="password"
             placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
           <button type="submit">Registrarse</button>
@@ -62,5 +64,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-  )
+  );
 }
