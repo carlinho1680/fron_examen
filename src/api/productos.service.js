@@ -1,3 +1,3 @@
-import api from './axios'
+import api from "./axios";
 
-export const getProductos = () => api.get('/productos')
+export const getProductos = () => api.get("/productos");

@@ -1,18 +1,20 @@
-import axios from 'axios'
+import axios from "axios";
 
 export const API_URL =
   import.meta.env.VITE_API_URL ||
-  'https://ev3fullstack2.onrender.com/api'
+  "https://ev3fullstack2-0lhy.onrender.com/api";
 
 const api = axios.create({
   baseURL: API_URL,
-  headers: { 'Content-Type': 'application/json' }
-})
+  headers: { "Content-Type": "application/json" },
+});
 
-api.interceptors.request.use(config => {
-  const token = localStorage.getItem('token')
-  if (token) config.headers.Authorization = `Bearer ${token}`
-  return config
-})
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
-export default api
+export default api;
