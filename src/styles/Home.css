@@ -4,7 +4,6 @@
   padding: 20px;
 }
 
-/* ----------------- BANNER ----------------- */
 .banner {
   width: 100%;
   position: relative;
@@ -52,7 +51,6 @@
   background: #e5e5e5;
 }
 
-/* ----------------- CATEGORÍAS ----------------- */
 .home-title {
   font-size: 1.8rem;
   font-weight: bold;
@@ -82,7 +80,6 @@
   background: #415fd7;
 }
 
-/* ----------------- DESTACADOS ----------------- */
 .destacados-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -113,7 +110,6 @@
   border-radius: 10px;
 }
 
-/* ----------------- NOTICIAS ----------------- */
 .news-container {
   margin-top: 20px;
   display: grid;
@@ -142,4 +138,47 @@
 .news-item p {
   color: #666;
   font-size: 0.9rem;
+}
+
+/* Limita el contenedor principal */
+.home {
+  max-width: 900px; /* Ajusta este valor para que el panel sea más estrecho */
+  margin: 80px auto; /* Lo separa del Navbar y lo centra */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Controla el tamaño del banner para que no sea gigante */
+.banner {
+  width: 100%;
+  max-height: 250px; /* Evita que el banner sea muy alto */
+  object-fit: cover; /* Mantiene la proporción de la imagen */
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+/* Ajusta los botones para que no se estiren demasiado */
+.options {
+  display: flex;
+  flex-direction: column; /* Los pone uno sobre otro */
+  align-items: center;    /* Los centra */
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-admin {
+  width: 100%;
+  max-width: 300px; /* Limita el ancho de los botones individuales */
+  padding: 15px;
+  background-color: #193591;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-admin:hover {
+  background-color: #415fd7;
+  transform: translateY(-2px);
 }

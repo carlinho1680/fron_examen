@@ -1,17 +1,22 @@
 .navbar {
-  width: 100%;
-  background-color: #193591;
-  border-bottom: 1px solid #415fd7;
-  padding: 1rem 2rem; 
-  box-sizing: border-box;
+  width: 100%;           
+  position: fixed;     
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center; 
+  background-color: #1a3a8a; 
 }
 
 .navbar-container {
+  width: 100%;           
+  max-width: none;    
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0 20px;     
+  height: 70px;       
 }
 
 .logo-image {

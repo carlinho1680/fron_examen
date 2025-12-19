@@ -1,6 +1,4 @@
-/* ------------------------------------ */
-/* Estilos Globales */
-/* ------------------------------------ */
+
 * {
   margin: 0;
   padding: 0;
@@ -20,17 +18,19 @@ html, body {
   min-height: 100vh;
 }
 
+
+main {
+  flex: 1;
+  width: 100%;       
+  margin: 0;         
+  padding: 20px;     
+}
+
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-main {
-  flex: 1;
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
+  width: 100%;      
 }
 
 footer {
@@ -40,9 +40,7 @@ footer {
   text-align: center;
 }
 
-/* ------------------------------------ */
-/* PRODUCTOS */
-/* ------------------------------------ */
+
 
 .product-grid {
   display: grid;
@@ -85,9 +83,7 @@ footer {
   background: #415fd7;
 }
 
-/* ------------------------------------ */
-/* DETALLE PRODUCTO */
-/* ------------------------------------ */
+
 
 .detalle-container {
   display: flex;
@@ -122,9 +118,6 @@ footer {
   background-color: #415fd7;
 }
 
-/* ------------------------------------ */
-/* CARRITO */
-/* ------------------------------------ */
 
 .carrito-page {
   max-width: 800px;
@@ -159,7 +152,6 @@ footer {
   flex: 1;
 }
 
-/* -------- Botones de cantidad -------- */
 
 .cantidad-controles {
   display: flex;
@@ -190,7 +182,6 @@ footer {
   text-align: center;
 }
 
-/* -------- Botón de eliminar producto -------- */
 
 .btn-eliminar {
   background: #c62828;
@@ -207,14 +198,12 @@ footer {
   background: #a71d1d;
 }
 
-/* -------- Subtotal -------- */
 
 .carrito-subtotal {
   margin-left: 20px;
   font-weight: bold;
 }
 
-/* -------- Total -------- */
 
 .carrito-total {
   margin-top: 25px;
@@ -235,4 +224,19 @@ footer {
 
 .btn-vaciar:hover {
   background: #333;
+}
+
+
+.productos-page-container {
+  padding-top: 80px; 
+  width: 100%;
+  text-align: center;
+}
+
+.titulo-seccion {
+  font-size: 2.5rem;
+  color: #193591; 
+  margin: 20px 0;
+  font-weight: bold;
+  text-transform: uppercase;
 }

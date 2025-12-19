@@ -1,36 +1,36 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { usarCarrito } from "../../context/CarritoContext";
-import { useState } from "react";
 
 export default function ProductCard({ product }) {
   const { agregarAlCarrito } = usarCarrito();
-  const [animando, setAnimando] = useState(false);
-
-  if (!product || !product.price) return null; // ⬅️ PROTECCIÓN
-
-  const handleAdd = () => {
-    agregarAlCarrito(product);
-    setAnimando(true);
-    setTimeout(() => setAnimando(false), 800);
-  };
 
   return (
-    <div className={`product-card ${animando ? "animacion-add" : ""}`}>
+    <div className="product-card">
       <Link to={`/producto/${product.id}`} className="product-link">
-        <img
-          className="product-img"
-          src={product.image}
-          alt={product.name}
-        />
-        <h3>{product.name}</h3>
-        <p className="price">
-          ${product.price.toLocaleString("es-CL")}
-        </p>
+        <div className="product-image-container">
+          <img src={product.image} alt={product.name} className="product-image" />
+        </div>
+        <div className="product-info">
+          <h3 className="product-name">{product.name}</h3>
+          <p className="product-category">{product.category}</p>
+        </div>
       </Link>
 
-      <button className="btn-add" onClick={handleAdd}>
-        {animando ? "✔ Añadido" : "Agregar al carrito"}
-      </button>
+      <div className="product-footer">
+        <span className="product-price">
+          ${product.price.toLocaleString("es-CL")}
+        </span>
+        <button 
+          className="btn-add" 
+          onClick={(e) => {
+            e.preventDefault();
+            agregarAlCarrito(product);
+          }}
+        >
+          Agregar
+        </button>
+      </div>
     </div>
   );
 }

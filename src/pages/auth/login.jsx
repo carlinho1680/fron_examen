@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
-import api from "../../api/axios";
+import { loginService } from "../../api/auth.service";
 import "./Login.css";
 
 export default function Login() {
@@ -15,17 +14,38 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await api.post("/auth/login", {
-        email,
-        password,
+      const res = await loginService({
+        username: email,    
+        contrasena: password 
       });
 
+      // --- IMPORTANTE: FORZAR GUARDADO PARA EL CARRITO ---
+      // Mapeamos lo que venga de Java (id o idUsuario) a un campo "id" estándar
+      const datosUsuario = {
+        id: res.data.id || res.data.idUsuario, 
+        nombre: res.data.nombre,
+        rol: res.data.rol,
+        username: res.data.username
+      };
+
+      // Guardamos en localStorage para que el Carrito lo encuentre siempre
+      localStorage.setItem("usuario", JSON.stringify(datosUsuario));
+      
+      // Guardamos en el contexto (AuthContext)
       login(res.data);
 
-      if (res.data.rol === "ADMIN") navigate("/admin");
-      else navigate("/");
-    } catch (err) {
-      alert("Credenciales incorrectas");
+      if (res.data.rol === "ADMIN") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        alert("Usuario o contraseña incorrectos");
+      } else {
+        alert("Error al conectar con el servidor (500)");
+      }
+      console.error("Error detallado:", error);
     }
   };
 
@@ -33,29 +53,31 @@ export default function Login() {
     <div className="login-container">
       <div className="login-box">
         <h2>Iniciar sesión</h2>
-
         <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Correo electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <button type="submit">Ingresar</button>
+          <div className="form-group">
+            <label>Usuario / Email</label>
+            <input
+              type="text"
+              placeholder="Ingrese su usuario"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              placeholder="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn-login">Ingresar</button>
         </form>
-
         <div className="register-link">
-          <Link to="/register">Crear cuenta</Link>
+          ¿No tienes cuenta? <span onClick={() => navigate("/register")} style={{color: 'blue', cursor: 'pointer'}}>Regístrate aquí</span>
         </div>
       </div>
     </div>

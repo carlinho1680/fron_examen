@@ -1,83 +1,72 @@
-import React, { useEffect, useState } from 'react';
-import Text from '../components/atoms/Text';
-import './MisCompras.css';
+import React, { useEffect, useState, useContext } from "react";
+import { obtenerComprasUsuario } from "../api/venta.service";
+import { AuthContext } from "../context/AuthContext";
 
-const MisCompras = () => {
+export default function MisCompras() {
+  const { user } = useContext(AuthContext);
   const [compras, setCompras] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const userId = localStorage.getItem("userId");
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    const fetchCompras = async () => {
+    const cargarDatos = async () => {
+      if (!user || !user.id) {
+          console.warn("No hay ID de usuario disponible");
+          return;
+      }
       try {
-        const response = await fetch(`http://localhost:8080/compras/usuario/${userId}`);
-        const data = await response.json();
-        setCompras(data);
+        const response = await obtenerComprasUsuario(user.id);
+        console.log("Respuesta de la API:", response.data);
+        setCompras(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
-        console.error("Error obteniendo las compras:", error);
+        console.error("Error al cargar compras:", error);
       } finally {
-        setLoading(false);
+        setCargando(false);
       }
     };
+    cargarDatos();
+  }, [user]);
 
-    fetchCompras();
-  }, []);
+  if (cargando) return <div style={{ marginTop: "150px", textAlign: "center" }}>Buscando tus pedidos...</div>;
 
   return (
-    <div className="mis-compras-container">
+    <div className="container" style={{ marginTop: "120px", padding: "20px" }}>
+      <h2 style={{ color: "#1a3a8a", textAlign: "center", marginBottom: "30px" }}>Historial de Pedidos</h2>
 
-      <Text variant="h2" className="mis-compras-title">
-        Mis Compras
-      </Text>
-
-      <Text variant="p" className="mis-compras-description">
-        Aquí puedes revisar todas tus compras realizadas y el estado actual de cada una.
-      </Text>
-
-      {loading ? (
-        <Text variant="p">Cargando compras...</Text>
-      ) : compras.length === 0 ? (
-        <Text variant="p">Aún no has realizado ninguna compra.</Text>
+      {compras.length === 0 ? (
+        <p style={{ textAlign: "center", color: "#666" }}>
+          No se encontraron compras para este usuario (ID: {user?.id}).
+        </p>
       ) : (
-        <div className="compras-list">
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           {compras.map((compra) => (
-            <div key={compra.id} className="compra-card">
+            <div 
+              key={compra.idVenta || compra.id} 
+              style={{ 
+                background: "white", 
+                border: "1px solid #dee2e6", 
+                padding: "20px", 
+                marginBottom: "15px", 
+                borderRadius: "8px",
+                boxShadow: "0 2px 4px rgba(0,0,0,0.05)"
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <strong style={{ color: "#1a3a8a" }}>Orden #{compra.idVenta || compra.id}</strong>
+                <span style={{ color: "#666" }}>
+                  {compra.fechaVenta ? new Date(compra.fechaVenta).toLocaleDateString() : 'Sin fecha'}
+                </span>
+              </div>
               
-              <Text variant="h3" className="compra-card-title">
-                Compra #{compra.id}
-              </Text>
-
-              <Text variant="p">
-                <strong>Fecha:</strong> {new Date(compra.fecha).toLocaleString()}
-              </Text>
-
-              <Text variant="p">
-                <strong>Estado:</strong> {compra.estado}
-              </Text>
-
-              <Text variant="p">
-                <strong>Total:</strong> ${compra.total}
-              </Text>
-
-              <Text variant="h4" className="compra-productos-title">
-                Productos:
-              </Text>
-
-              <ul className="productos-list">
-                {compra.detalles.map((item) => (
-                  <li key={item.id} className="producto-item">
-                    {item.producto.nombre} — {item.cantidad} x ${item.precio}
-                  </li>
-                ))}
-              </ul>
-
+              <div style={{ marginTop: "10px" }}>
+                <p style={{ margin: 0 }}><strong>Documento:</strong> {compra.tipoDocumento || "N/A"}</p>
+                <p style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#28a745", marginTop: "10px" }}>
+                  Total: ${compra.total ? compra.total.toLocaleString("es-CL") : "0"}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       )}
     </div>
   );
-};
-
-export default MisCompras;
+}
